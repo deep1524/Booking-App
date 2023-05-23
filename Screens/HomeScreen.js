@@ -14,6 +14,7 @@ import Header from "../Components/Header";
 import { EvilIcons } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import DatePicker from "react-native-date-ranges";
+// home layout
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [selectedDates, setSelectedDates] = useState();
