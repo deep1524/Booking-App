@@ -147,7 +147,7 @@ const HomeScreen = () => {
                   setSelectedDates(startDate, endDate)
                 }
                 allowFontScaling={false}
-                placeholder={"Apr 27, 2018 → Jul 10, 2018"}
+                placeholder={"Select Your Date"}
                 mode={"range"}
               />
             </Pressable>
