@@ -1,5 +1,6 @@
 import {
   Button,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -44,7 +45,7 @@ const HomeScreen = () => {
       },
       headerStyle: {
         backgroundColor: "#003580",
-        height: 110,
+        height: 80, // edit 110
         borderBottomColor: "transparent",
         shadowColor: "transparent",
       },
@@ -72,7 +73,7 @@ const HomeScreen = () => {
     );
   };
   return (
-    <>
+    <ScrollView>
       <View>
         <Header />
         <ScrollView>
@@ -190,9 +191,95 @@ const HomeScreen = () => {
                 Search
               </Text>
             </Pressable>
-         
           </View>
-          <Text style={{marginHorizontal:20,fontSize:17,fontWeight:"500"}}>Travel More Spend Less</Text>
+          <Text
+            style={{ marginHorizontal: 20, fontSize: 17, fontWeight: "500" }}
+          >
+            Travel More Spend Less
+          </Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Pressable
+              style={{
+                width: 200,
+                height: 120,
+                marginTop: 10,
+                backgroundColor: "#003580",
+                borderRadius: 10,
+                padding: 20,
+                marginHorizontal: 20,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                Genius
+              </Text>
+              <Text style={{ color: "white", fontSize: 15, fontWeight: "500" }}>
+                You are ate genius level one in our loyality progress{" "}
+              </Text>
+            </Pressable>
+            <Pressable
+              style={{
+                width: 200,
+                height: 120,
+                marginTop: 10,
+                borderColor: "#E0E0E0",
+                borderWidth: 2,
+                borderRadius: 10,
+                padding: 20,
+                marginHorizontal: 10,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                15% Discounts
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                Complete stays to unlock level 2
+              </Text>
+            </Pressable>
+            <Pressable
+              style={{
+                width: 200,
+                height: 120,
+                marginTop: 10,
+                borderColor: "#E0E0E0",
+                borderWidth: 2,
+                borderRadius: 10,
+                padding: 20,
+                marginHorizontal: 20,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontWeight: "bold",
+                  marginVertical: 7,
+                }}
+              >
+                10% Discounts
+              </Text>
+              <Text style={{ fontSize: 15, fontWeight: "500" }}>
+                Enjoy Discounts at participating worldwide
+              </Text>
+            </Pressable>
+          </ScrollView>
+          <Pressable style={{marginTop:20,justifyContent:"center",alignItems:"center"}}>
+            <Image
+              style={{ width: 200, height: 50, resizeMode: "cover" }}
+              source={{ uri: "https://assets.stickpng.com/thumbs/5a32a821cb9a85480a628f8f.png", }}
+            ></Image>
+          </Pressable>
         </ScrollView>
       </View>
       <BottomModal
@@ -436,7 +523,7 @@ const HomeScreen = () => {
           </View>
         </ModalContent>
       </BottomModal>
-    </>
+    </ScrollView>
   );
 };
 
