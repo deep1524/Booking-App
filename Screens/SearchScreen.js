@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-
+// scrren
 const SearchScreen = () => {
   return (
     <View>
