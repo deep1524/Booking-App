@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../Components/Header";
 import { EvilIcons } from "@expo/vector-icons";
@@ -27,12 +27,13 @@ import {
 // home layout
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const route=useRoute();
   const [selectedDates, setSelectedDates] = useState();
   const [selectedrooms, setSelectedrooms] = useState(1);
   const [selectedadults, setSelectedadults] = useState(2);
   const [selectedchilderen, setSelectedchildren] = useState(0);
   const [modalVisibale, setModalVisibale] = useState(false);
-  console.log(selectedDates);
+  // console.log(selectedDates);
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: true,
@@ -72,6 +73,7 @@ const HomeScreen = () => {
       />
     );
   };
+  console.log(route.params);
   return (
     <ScrollView>
       <View>
@@ -87,6 +89,7 @@ const HomeScreen = () => {
           >
             {/*  destination */}
             <Pressable
+            onPress={()=>navigation.navigate("Search")}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -100,7 +103,7 @@ const HomeScreen = () => {
               <EvilIcons name="search" size={24} color="black" />
               <TextInput
                 placeholderTextColor="black"
-                placeholder="Enter Your Destination"
+                placeholder={route.params? route.params.input :"Enter your destination"}
               ></TextInput>
             </Pressable>
             {/* Selected Dates */}

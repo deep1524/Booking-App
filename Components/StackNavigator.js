@@ -12,6 +12,7 @@ import BookingScreen from "../Screens/BookingScreen";
 import { Ionicons } from '@expo/vector-icons';
 import ProfileScreen from "../Screens/ProfileScreen";
 import { NavigationContainer } from "@react-navigation/native";
+import SearchScreen from "../Screens/SearchScreen";
 
 
 
@@ -85,6 +86,7 @@ const StackNavigator = () => {
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Main" component={BottomTabs} options={{headerShown:false}} />
+      <Stack.Screen name="Search" component={SearchScreen} options={{headerShown:false}} />
     </Stack.Navigator>
   </NavigationContainer>
   );
