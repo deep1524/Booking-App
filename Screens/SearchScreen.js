@@ -2,6 +2,7 @@ import { LogBox, SafeAreaView, StyleSheet, Text, TextInput, View } from "react-n
 import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import SearchResults from "../Components/SearchResults";
+// search screen
 const SearchScreen = () => {
   const [input, setInput] = useState("");
  console.log(input);
