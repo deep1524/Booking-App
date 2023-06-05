@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import ProfileScreen from "../Screens/ProfileScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import SearchScreen from "../Screens/SearchScreen";
+import PlacesScreen from "../Screens/PlacesScreen";
 
 
 
@@ -87,6 +88,7 @@ const StackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="Main" component={BottomTabs} options={{headerShown:false}} />
       <Stack.Screen name="Search" component={SearchScreen} options={{headerShown:false}} />
+      <Stack.Screen name="Places" component={PlacesScreen}  />
     </Stack.Navigator>
   </NavigationContainer>
   );

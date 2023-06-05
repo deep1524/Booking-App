@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  Alert,
 } from "react-native";
 import React, { useLayoutEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -27,7 +28,7 @@ import {
 // home layout
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const route=useRoute();
+  const route = useRoute();
   const [selectedDates, setSelectedDates] = useState();
   const [selectedrooms, setSelectedrooms] = useState(1);
   const [selectedadults, setSelectedadults] = useState(2);
@@ -74,6 +75,32 @@ const HomeScreen = () => {
     );
   };
   console.log(route.params);
+  const searchPlaces = (place) => {
+    if (!route.params || !selectedDates) {
+      Alert.alert(
+        "Invalid Details",
+        "Please enter all the details",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ],
+        { cancelable: false }
+      );
+    }
+    if (route.params && selectedDates) {
+      navigation.navigate("Places", {
+        rooms: selectedrooms,
+        adults: selectedadults,
+        children: selectedchilderen,
+        selectedDates:selectedDates,
+        place:place
+      });
+    }
+  };
   return (
     <ScrollView>
       <View>
@@ -89,7 +116,7 @@ const HomeScreen = () => {
           >
             {/*  destination */}
             <Pressable
-            onPress={()=>navigation.navigate("Search")}
+              onPress={() => navigation.navigate("Search")}
               style={{
                 flexDirection: "row",
                 alignItems: "center",
@@ -103,7 +130,9 @@ const HomeScreen = () => {
               <EvilIcons name="search" size={24} color="black" />
               <TextInput
                 placeholderTextColor="black"
-                placeholder={route.params? route.params.input :"Enter your destination"}
+                placeholder={
+                  route.params ? route.params.input : "Enter your destination"
+                }
               ></TextInput>
             </Pressable>
             {/* Selected Dates */}
@@ -175,6 +204,7 @@ const HomeScreen = () => {
             </Pressable>
             {/* Search Button */}
             <Pressable
+              onPress={() => searchPlaces(route?.params.input)}
               style={{
                 paddingHorizontal: 10,
                 borderColor: "#FFC72C",
@@ -277,10 +307,18 @@ const HomeScreen = () => {
               </Text>
             </Pressable>
           </ScrollView>
-          <Pressable style={{marginTop:20,justifyContent:"center",alignItems:"center"}}>
+          <Pressable
+            style={{
+              marginTop: 20,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <Image
               style={{ width: 200, height: 50, resizeMode: "cover" }}
-              source={{ uri: "https://assets.stickpng.com/thumbs/5a32a821cb9a85480a628f8f.png", }}
+              source={{
+                uri: "https://assets.stickpng.com/thumbs/5a32a821cb9a85480a628f8f.png",
+              }}
             ></Image>
           </Pressable>
         </ScrollView>
