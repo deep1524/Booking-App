@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-// impotent things important things time on  the timecd  into the tyhb hjghjgfdfbxb
+// impotent things important things time on  the timecd  into the tyhb hjghjgfdfbxb vc
 const PropertyCard = () => {
   return (
     <View>
