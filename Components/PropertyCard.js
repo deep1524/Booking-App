@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
-// impotent things important things time ggghhghgjgj
+// impotent things important things time ggghhghgjgjfd
 const PropertyCard = () => {
   return (
     <View>
