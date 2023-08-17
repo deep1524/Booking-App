@@ -102,7 +102,7 @@ const HomeScreen = () => {
     }
   };
   return (
-    <ScrollView>
+    <>
       <View>
         <Header />
         <ScrollView>
@@ -154,7 +154,7 @@ const HomeScreen = () => {
                   height: 30,
                   borderRadius: 0,
                   borderWidth: 0,
-                  borderColor: "tr",
+                  borderColor: "transparent",
                 }}
                 customStyles={{
                   placeholderText: {
@@ -166,7 +166,7 @@ const HomeScreen = () => {
                   headerStyle: {
                     backgroundColor: "#003580",
                   },
-                  contenttext: {
+                  contentText: {
                     fontSize: 15,
                     flexDirection: "row",
                     alignItems: "center",
@@ -174,6 +174,7 @@ const HomeScreen = () => {
                   },
                 }}
                 selectedBgColor="#0047AB"
+                // for custom button
                 customButton={(onConfirm) => customButton(onConfirm)}
                 onConfirm={(startDate, endDate) =>
                   setSelectedDates(startDate, endDate)
@@ -225,6 +226,7 @@ const HomeScreen = () => {
               </Text>
             </Pressable>
           </View>
+          {/* Travel More Spend Less */}
           <Text
             style={{ marginHorizontal: 20, fontSize: 17, fontWeight: "500" }}
           >
@@ -295,6 +297,7 @@ const HomeScreen = () => {
             >
               <Text
                 style={{
+                  
                   fontSize: 15,
                   fontWeight: "bold",
                   marginVertical: 7,
@@ -303,7 +306,7 @@ const HomeScreen = () => {
                 10% Discounts
               </Text>
               <Text style={{ fontSize: 15, fontWeight: "500" }}>
-                Enjoy Discounts at participating worldwide
+                Enjoy Discounts at participating at properties worldwide
               </Text>
             </Pressable>
           </ScrollView>
@@ -564,7 +567,7 @@ const HomeScreen = () => {
           </View>
         </ModalContent>
       </BottomModal>
-    </ScrollView>
+    </>
   );
 };
 
