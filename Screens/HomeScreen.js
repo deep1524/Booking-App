@@ -76,6 +76,8 @@ const HomeScreen = () => {
     );
   };
   console.log(route.params);
+
+  
   const searchPlaces = (place) => {
     if (!route.params || !selectedDates) {
       Alert.alert(
@@ -103,7 +105,7 @@ const HomeScreen = () => {
     }
   };
   return (
-    <>
+    <ScrollView>
       <View>
         <Header />
         <ScrollView>
@@ -132,7 +134,7 @@ const HomeScreen = () => {
               <TextInput
                 placeholderTextColor="black"
                 placeholder={
-                  route.params ? route.params.input : "Enter your destination"
+                  route?.params ? route.params.input : "Enter your destination"
                 }
               ></TextInput>
             </Pressable>
@@ -181,7 +183,7 @@ const HomeScreen = () => {
                   setSelectedDates(startDate, endDate)
                 }
                 allowFontScaling={false}
-                placeholder={"Select Your Date"}
+                placeholder={"Select Your Dates"}
                 mode={"range"}
               />
             </Pressable>
@@ -281,7 +283,7 @@ const HomeScreen = () => {
                 15% Discounts
               </Text>
               <Text style={{ fontSize: 15, fontWeight: "500" }}>
-                Complete stays to unlock level 2
+                Complete 5 stays to unlock level 2
               </Text>
             </Pressable>
             <Pressable
@@ -311,6 +313,8 @@ const HomeScreen = () => {
               </Text>
             </Pressable>
           </ScrollView>
+
+          {/* // booking.com */}
           <Pressable
             style={{
               marginTop: 20,
@@ -568,7 +572,7 @@ const HomeScreen = () => {
           </View>
         </ModalContent>
       </BottomModal>
-    </>
+    </ScrollView>
   );
 };
 
