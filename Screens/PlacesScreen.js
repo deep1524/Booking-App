@@ -1,13 +1,22 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Octicons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import PropertyCard from "../Components/PropertyCard";
+import { Feather } from "@expo/vector-icons";
+import {
+  BottomModal,
+  ModalContent,
+  ModalFooter,
+  ModalTitle,
+  SlideAnimation,
+} from "react-native-modals";
 const PlacesScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+  const [modalVisibale, setModalVisibale] = useState(false);
   const data = [
     {
       id: "0",
@@ -487,6 +496,16 @@ const PlacesScreen = () => {
       },
     });
   }, []);
+  const filters = [
+    {
+      id: "0",
+      filter: "cost:Low to High",
+    },
+    {
+      id: "1",
+      filter: "cost:High to Low",
+    },
+  ];
   return (
     <View>
       <Pressable
@@ -499,7 +518,10 @@ const PlacesScreen = () => {
           backgroundColor: "white",
         }}
       >
-        <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
+        <Pressable
+          onPress={() => setModalVisibale(!modalVisibale)}
+          style={{ flexDirection: "row", alignItems: "center" }}
+        >
           <Octicons name="arrow-switch" size={22} color="gray" />
           <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
             Sort
@@ -528,13 +550,74 @@ const PlacesScreen = () => {
                 rooms={route.params.rooms}
                 children={route.params.children}
                 adults={route.params.adults}
-                selectedDates={route.params.selectedDates} 
+                selectedDates={route.params.selectedDates}
                 property={property}
                 availableRoom={property.rooms}
               />
             ))
           )}
       </ScrollView>
+
+      {/* // model */}
+      <BottomModal
+        onBackdropPress={() => setModalVisibale(!modalVisibale)}
+        swipeDirection={["up", "down"]}
+        swipeThreshold={200}
+        footer={
+          <ModalFooter>
+            <Pressable
+              style={{
+                paddingRight: 10,
+                marginLeft: "auto",
+                marginRight: "auto",
+                marginVertical: 10,
+              }}
+            >
+              <Text>Apply</Text>
+            </Pressable>
+          </ModalFooter>
+        }
+        modalTitle={<ModalTitle title="Sort and filter" />}
+        modalAnimation={
+          new SlideAnimation({
+            slideFrom: "bottom",
+          })
+        }
+        onHardwareBackPress={() => setModalVisibale(!modalVisibale)}
+        visible={modalVisibale}
+        onTouchOutside={() => setModalVisibale(!modalVisibale)}
+      >
+        <ModalContent style={{ width: "100%", height: 280 }}>
+          <View style={{ flexDirection: "row" }}>
+            <View
+              style={{
+                marginVertical: 10,
+                flex: 2,
+                height: 280,
+                borderRightWidth: 1,
+                borderColor: "#E0E0E0",
+              }}
+            >
+              <Text style={{ textAlign: "center" }}>Sort</Text>
+            </View>
+            <View style={{ flex: 3, margin: 10 }}>
+              {filters.map((filter, index) => (
+                <Pressable
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginVertical: "10",
+                  }}
+                  key={index}
+                >
+                  <Feather name="circle" size={18} color="black" />
+                  <Text style={{ fontSize: 16,fontWeight:"500",marginLeft:6 }}>{filter.filter}</Text>
+                </Pressable>
+              ))}
+            </View>
+          </View>
+        </ModalContent>
+      </BottomModal>
     </View>
   );
 };

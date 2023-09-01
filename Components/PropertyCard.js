@@ -26,7 +26,7 @@ const PropertyCard = ({
       >
         <View>
           <Image
-            style={{ height: height / 4, width: width - 280 }}
+            style={{ height: height / 3, width: width - 280 }}
             source={{ uri: property.image }}
           />
         </View>
@@ -81,15 +81,45 @@ const PropertyCard = ({
           <Text style={{ marginTop: 4, fontSize: 15, fontWeight: "500" }}>
             Price For 1 Night and {adults} adults
           </Text>
-          <View style={{flexDirection:"row",marginTop:5,alignItems:"center",gap:8}}>
-            <Text style={{color:"red",fontSize:18,textDecorationLine:"line-through"}}>{property.oldPrice * adults}</Text>
-            <Text style={{fontSize:18}}>Rs {property.newPrice * adults}</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 5,
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <Text
+              style={{
+                color: "red",
+                fontSize: 18,
+                textDecorationLine: "line-through",
+              }}
+            >
+              {property.oldPrice * adults}
+            </Text>
+            <Text style={{ fontSize: 18 }}>
+              {" "}
+              Rs {property.newPrice * adults}
+            </Text>
           </View>
-          <View style={{marginTop:6}}>
-            <Text style={{fontSize:16,color:"gray"}}>Deluxe Room</Text>
-            <Text style={{fontSize:16,color:"gray"}}>Hotel Room: 1 Bed</Text>
+          <View style={{ marginTop: 6 }}>
+            <Text style={{ fontSize: 16, color: "gray" }}>Deluxe Room</Text>
+            <Text style={{ fontSize: 16, color: "gray" }}>
+              Hotel Room: 1 Bed
+            </Text>
           </View>
-
+          <View   style={{
+                backgroundColor: "#6082B6",
+                paddingVertical: 2,
+                marginTop:2,
+                borderRadius: 5,
+                width: 150,
+               
+                paddingHorizontal:3
+              }}>
+            <Text style={{color:"white",textAlign:"center"}}>Limited Time Deal</Text>
+          </View>
         </View>
       </Pressable>
     </View>
