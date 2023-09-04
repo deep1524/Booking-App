@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import PropertyCard from "../Components/PropertyCard";
 import { Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import {
   BottomModal,
   ModalContent,
@@ -17,6 +18,7 @@ const PlacesScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
   const [modalVisibale, setModalVisibale] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState([]);
   const data = [
     {
       id: "0",
@@ -506,6 +508,42 @@ const PlacesScreen = () => {
       filter: "cost:High to Low",
     },
   ];
+  const compare = (a, b) => {
+    if (a.newPrice > b.newPrice) {
+      return -1;
+    }
+    if (a.newPrice < b.newPrice) {
+      return 1;
+    }
+    return 0;
+  };
+  const comparison = (a,b) => {
+    if (a.newPrice < b.newPrice) {
+      return -1;
+    }
+    if (a.newPrice > b.newPrice) {
+      return 1;
+    }
+    return 0;
+  };
+  const searchPlaces = data?.filter(
+    (item) => item.place === route.params.place
+  );
+  const [sortedData, setSortedData] = useState(data);
+  console.log("search", searchPlaces);
+  const applyFilter = (filter) => {
+    setModalVisibale(false);
+    switch (filter) {
+      case "cost:High to Low":
+        searchPlaces.map((val) => val.properties.sort(compare));
+        setSortedData(searchPlaces);
+        break;
+      case "cost:Low to High":
+        searchPlaces.map((val) => val.properties.sort(comparison));
+        setSortedData(searchPlaces);
+        break;
+    }
+  };
   return (
     <View>
       <Pressable
@@ -541,7 +579,7 @@ const PlacesScreen = () => {
         </Pressable>
       </Pressable>
       <ScrollView style={{ backgroundColor: "#F5F5F5" }}>
-        {data
+        {sortedData
           ?.filter((item) => item.place === route.params.place)
           .map((item) =>
             item.properties.map((property, index) => (
@@ -566,18 +604,20 @@ const PlacesScreen = () => {
         footer={
           <ModalFooter>
             <Pressable
+              onPress={() => applyFilter(selectedFilter)}
               style={{
                 paddingRight: 10,
                 marginLeft: "auto",
                 marginRight: "auto",
                 marginVertical: 10,
+                marginBottom: 30,
               }}
             >
               <Text>Apply</Text>
             </Pressable>
           </ModalFooter>
         }
-        modalTitle={<ModalTitle title="Sort and filter" />}
+        modalTitle={<ModalTitle title="Sort and Filter" />}
         modalAnimation={
           new SlideAnimation({
             slideFrom: "bottom",
@@ -601,17 +641,27 @@ const PlacesScreen = () => {
               <Text style={{ textAlign: "center" }}>Sort</Text>
             </View>
             <View style={{ flex: 3, margin: 10 }}>
-              {filters.map((filter, index) => (
+              {filters.map((item, index) => (
                 <Pressable
+                  onPress={() => setSelectedFilter(item.filter)}
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    marginVertical: "10",
+                    marginVertical: 10,
                   }}
                   key={index}
                 >
-                  <Feather name="circle" size={18} color="black" />
-                  <Text style={{ fontSize: 16,fontWeight:"500",marginLeft:6 }}>{filter.filter}</Text>
+                  {selectedFilter.includes(item.filter) ? (
+                    <AntDesign name="checkcircle" size={18} color="green" />
+                  ) : (
+                    <Feather name="circle" size={18} color="black" />
+                  )}
+
+                  <Text
+                    style={{ fontSize: 16, fontWeight: "500", marginLeft: 6 }}
+                  >
+                    {item.filter}
+                  </Text>
                 </Pressable>
               ))}
             </View>

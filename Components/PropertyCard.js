@@ -17,7 +17,7 @@ const PropertyCard = ({
   selectedDates,
   availableRooms,
 }) => {
-  // console.log("Property",property.image);
+  // console.log("Property",property);
   const { width, height } = Dimensions.get("window");
   return (
     <View>
@@ -99,7 +99,7 @@ const PropertyCard = ({
               {property.oldPrice * adults}
             </Text>
             <Text style={{ fontSize: 18 }}>
-              {" "}
+              
               Rs {property.newPrice * adults}
             </Text>
           </View>
