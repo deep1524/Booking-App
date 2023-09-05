@@ -14,6 +14,7 @@ import {
   ModalTitle,
   SlideAnimation,
 } from "react-native-modals";
+
 const PlacesScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
@@ -571,7 +572,7 @@ const PlacesScreen = () => {
             Filter
           </Text>
         </Pressable>
-        <Pressable style={{ flexDirection: "row", alignItems: "center" }}>
+        <Pressable onPress={()=>navigation.navigate("Map",{searchResults:searchPlaces})} style={{ flexDirection: "row", alignItems: "center" }}>
           <FontAwesome5 name="map-marker-alt" size={22} color="gray" />
           <Text style={{ fontSize: 15, fontWeight: "500", marginLeft: 8 }}>
             Map
